@@ -1,5 +1,5 @@
 int x = 250;
-int pipex = 500;
+int pipex = 800;
 float y = 250;
 float v = 0;
 float gravity = 0.25;
