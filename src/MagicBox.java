@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -29,13 +30,12 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	 * 
 	 * 3. backgroundImage.getRGB(keyEvent.getX(), keyEvent.getY()) will give you the color of the current pixel.
 	 */
+	MediaPalace mediaPalace = new MediaPalace();
 	BufferedImage backgroundImage;
-
+	JFrame frame = new JFrame("The Magic Box contains many secrets...");
+	
 	public static void main(String[] args) throws Exception {
 		SwingUtilities.invokeLater(new MagicBox());
-	
-		
-		
 	}
 
 	@Override
@@ -49,12 +49,12 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	}
 
 	private void createUI() {
-		JFrame frame = new JFrame("The Magic Box contains many secrets...");
 		frame.add(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.addMouseListener(this);
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -74,7 +74,14 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		JFrame frame2 = new JFrame();
+		frame2.setVisible(true);
+		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JLabel label = mediaPalace.loadImageFromWithinProject("dog.jpg");
+		frame2.add(label);
+		frame2.pack();
+		System.out.println("x=" + e.getX());
+		System.out.println("y=" + e.getY());
 	}
 
 	@Override
