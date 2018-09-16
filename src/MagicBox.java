@@ -4,6 +4,7 @@
  */
 
 
+import java.applet.AudioClip;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -74,12 +75,14 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		JFrame frame2 = new JFrame();
-		frame2.setVisible(true);
-		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JLabel label = mediaPalace.loadImageFromWithinProject("dog.jpg");
-		frame2.add(label);
-		frame2.pack();
+		if (e.getY()<194 ) {
+			JFrame frame2 = new JFrame();
+			frame2.setVisible(true);
+			frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			JLabel label = mediaPalace.loadImageFromWithinProject("dog.jpg");
+			frame2.add(label);
+			frame2.pack();
+		}
 		System.out.println("x=" + e.getX());
 		System.out.println("y=" + e.getY());
 	}
@@ -87,13 +90,29 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (e.getY()>193 && e.getY()<387) {
+			JFrame frame3 = new JFrame();
+			frame3.setVisible(true);
+			frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			JLabel label2 = mediaPalace.loadImageFromHardDrive("src/Mike.png");
+			frame3.add(label2);
+			frame3.pack();
+		}
+		if (e.getY()>579 && e.getY()<773) {
+			AudioClip audioClip = mediaPalace.loadSound("dog.wav");
+			audioClip.play();
+		}
+		if (e.getY()>772 && e.getY()<966) {
+			mediaPalace.playSoundFromInternet("https://soundcloud.com/chekparren/dog");
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (e.getY()>386 && e.getY()<580) {
+			mediaPalace.playMusicOnComputer("src/dog.mp3");
+		}
 	}
 
 	@Override
